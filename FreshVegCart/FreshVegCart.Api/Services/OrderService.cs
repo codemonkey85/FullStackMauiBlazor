@@ -81,7 +81,26 @@ public class OrderService(DataContext dataContext) : ServiceBase(dataContext)
             }).ToArrayAsync();
     }
 
-    public async Task GetUserOrderItems(int orderId, int userId)
+    public async Task<ApiResult<OrderItemDto[]>> GetUserOrderItems(int orderId, int userId)
     {
+        var order = await DataContext.Orders
+            .AsNoTracking()
+            .Include(order => order.Items)
+            .FirstOrDefaultAsync(o => o.Id == orderId && o.UserId == userId);
+
+        return order is null
+            ? ApiResult<OrderItemDto[]>.Fail("Order not found.")
+            : ApiResult<OrderItemDto[]>.Success([
+                .. order.Items.Select(orderItem => new OrderItemDto
+                {
+                    Id = orderItem.Id,
+                    ProductId = orderItem.ProductId,
+                    ProductName = orderItem.ProductName,
+                    ProductImageUrl = orderItem.ProductImageUrl,
+                    ProductPrice = orderItem.ProductPrice,
+                    Quantity = orderItem.Quantity,
+                    Unit = orderItem.Unit
+                })
+            ], "Order successfully found.");
     }
 }
