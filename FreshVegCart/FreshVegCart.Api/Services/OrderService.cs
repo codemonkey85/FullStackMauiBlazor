@@ -9,6 +9,11 @@ public class OrderService(DataContext dataContext) : ServiceBase(dataContext)
 {
     public async Task<ApiResult> PlaceOrder(PlaceOrderDto dto, int userId)
     {
+        if (dto.Items.Length == 0)
+        {
+            return ApiResult.Fail("No items in the order.");
+        }
+
         var productIds = dto.Items.Select(i => i.ProductId).Distinct().ToArray();
 
         var products = await DataContext.Products
