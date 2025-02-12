@@ -18,14 +18,14 @@ public class Order
     [Column(TypeName = DatabaseConstants.DecimalType)]
     public decimal TotalAmount { get; set; }
 
-    [MaxLength(200)]
+    [StringLength(200)]
     public string? Remarks { get; set; }
 
     public OrderStatus Status { get; set; } = OrderStatus.Placed;
 
     public int UserAddressId { get; set; }
 
-    [Required, MaxLength(250)]
+    [Required, StringLength(250)]
     public string Address { get; set; } = string.Empty;
 
     public virtual ICollection<OrderItem> Items { get; set; } = [];

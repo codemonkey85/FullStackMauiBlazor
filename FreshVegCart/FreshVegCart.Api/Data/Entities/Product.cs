@@ -8,16 +8,16 @@ public class Product
     [Key]
     public int Id { get; set; }
 
-    [Required, MaxLength(50)]
+    [Required, StringLength(50)]
     public string Name { get; set; } = string.Empty;
 
-    [Required, MaxLength(200)]
+    [Required, StringLength(200)]
     public string ImageUrl { get; set; } = string.Empty;
 
     [Column(TypeName = DatabaseConstants.DecimalType)]
     public decimal Price { get; set; }
 
-    [Required, MaxLength(10)]
+    [Required, StringLength(10)]
     public string Unit { get; set; } = string.Empty;
 
     public static Product[] GetSeedData()

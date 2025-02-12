@@ -11,10 +11,10 @@ public class UserAddress
 
     public virtual User User { get; set; } = null!;
 
-    [Required, MaxLength(250)]
+    [Required, StringLength(250)]
     public string Address { get; set; } = string.Empty;
 
-    [Required, MaxLength(20)]
+    [Required, StringLength(20)]
     public string Name { get; set; } = string.Empty;
 
     public bool IsDefault { get; set; }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FreshVegCart.Api.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250212162515_Initial")]
+    [Migration("20250212174036_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -160,8 +160,8 @@ namespace FreshVegCart.Api.Data.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(20)
