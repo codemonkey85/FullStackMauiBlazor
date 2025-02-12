@@ -5,8 +5,7 @@ namespace FreshVegCart.Api.Data;
 
 public static class Registration
 {
-    public static IServiceCollection
-        RegisterDbContext(this IServiceCollection services, string connectionString) =>
+    public static IServiceCollection RegisterDbContext(this IServiceCollection services, string connectionString) =>
         services.AddDbContext<DataContext>(options =>
             options.UseSqlServer(connectionString).SeedProductData());
 

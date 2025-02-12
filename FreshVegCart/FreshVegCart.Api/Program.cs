@@ -1,7 +1,6 @@
 using FreshVegCart.Api.Data;
-using FreshVegCart.Api.Data.Entities;
+using FreshVegCart.Api.Endpoints;
 using FreshVegCart.Api.Services;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -22,5 +21,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.RegisterApiEndpoints();
 
 app.Run();
