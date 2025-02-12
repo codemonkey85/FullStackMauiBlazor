@@ -1,6 +1,6 @@
 ﻿namespace FreshVegCart.Api.Services;
 
-public class AuthService(DataContext dataContext, IPasswordHasher<User> passwordHasher, IConfiguration configuration)
+public class AuthService(DataContext dataContext, IPasswordHasher<User> passwordHasher, IOptions<JwtConfig> jwtConfig)
     : ServiceBase(dataContext)
 {
     public async Task<ApiResult> Register(RegisterDto dto)
@@ -65,14 +65,14 @@ public class AuthService(DataContext dataContext, IPasswordHasher<User> password
             new(ClaimTypes.Email, user.Email),
         ];
 
-        var secretKey = configuration.GetValue<string>("Jwt:SecretKey") ?? string.Empty;
+        var secretKey = jwtConfig.Value.SecretKey;
 
         var securityKey = Encoding.UTF8.GetBytes(secretKey);
         var symmetricKey = new SymmetricSecurityKey(securityKey);
         var signingCreds = new SigningCredentials(symmetricKey, SecurityAlgorithms.HmacSha256);
 
-        var issuer = configuration.GetValue<string>("Jwt:Issuer");
-        var expirationInMinutes = configuration.GetValue<int>("Jwt:ExpirationInMinutes");
+        var issuer = jwtConfig.Value.Issuer;
+        var expirationInMinutes = jwtConfig.Value.ExpirationInMinutes;
 
         var jwtSecurityToken = new JwtSecurityToken(
             issuer: issuer,

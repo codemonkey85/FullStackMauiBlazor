@@ -2,7 +2,7 @@
 
 public static class AuthRegistration
 {
-    public static IServiceCollection RegisterAuthentication(this IServiceCollection services, ConfigurationManager config)
+    public static IServiceCollection RegisterAuthentication(this IServiceCollection services, JwtConfig jwtConfig)
     {
         services
             .AddAuthentication(options =>
@@ -12,8 +12,8 @@ public static class AuthRegistration
             })
             .AddJwtBearer(options =>
             {
-                var secretKey = config.GetValue<string>("Jwt:SecretKey") ?? string.Empty;
-                var issuer = config.GetValue<string>("Jwt:Issuer");
+                var secretKey = jwtConfig.SecretKey;
+                var issuer = jwtConfig.Issuer;
 
                 var securityKey = Encoding.UTF8.GetBytes(secretKey);
                 var symmetricKey = new SymmetricSecurityKey(securityKey);
