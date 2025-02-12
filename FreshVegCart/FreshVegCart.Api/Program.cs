@@ -1,5 +1,6 @@
 using FreshVegCart.Api.Data;
 using FreshVegCart.Api.Data.Entities;
+using FreshVegCart.Api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,8 @@ services
                 context.Set<Product>().AddRange(Product.GetSeedData());
                 await context.SaveChangesAsync(cancellationToken: ct);
             }));
+
+services.RegisterServices();
 
 var app = builder.Build();
 
