@@ -55,7 +55,9 @@ namespace FreshVegCart.Api.Data.Migrations
                     Remarks = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     UserAddressId = table.Column<int>(type: "int", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    AddressName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ItemCount = table.Column<int>(type: "int", nullable: false, computedColumnSql: "(SELECT COUNT(*)\r\nFROM OrderItems\r\nWHERE OrderItems.OrderId = Orders.Id)", stored: true)
                 },
                 constraints: table =>
                 {

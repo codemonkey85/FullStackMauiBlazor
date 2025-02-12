@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FreshVegCart.Api.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250212182033_Initial")]
+    [Migration("20250212184927_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -38,8 +38,18 @@ namespace FreshVegCart.Api.Data.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<string>("AddressName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("ItemCount")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("int")
+                        .HasComputedColumnSql("(SELECT COUNT(*)\r\nFROM OrderItems\r\nWHERE OrderItems.OrderId = Orders.Id)", true);
 
                     b.Property<string>("Remarks")
                         .HasMaxLength(200)

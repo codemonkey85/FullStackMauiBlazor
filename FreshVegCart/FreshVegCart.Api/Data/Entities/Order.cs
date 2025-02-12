@@ -28,5 +28,11 @@ public class Order
     [Required, StringLength(250)]
     public string Address { get; set; } = string.Empty;
 
+    [Required, StringLength(20)]
+    public string AddressName { get; set; } = string.Empty;
+
     public virtual ICollection<OrderItem> Items { get; set; } = [];
+
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+    public int ItemCount { get; private set; }
 }
