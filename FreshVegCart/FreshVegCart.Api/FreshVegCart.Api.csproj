@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
+		<LangVersion>preview</LangVersion>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UserSecretsId>be2900b1-472e-489a-9fd4-d42971f6cd9e</UserSecretsId>
