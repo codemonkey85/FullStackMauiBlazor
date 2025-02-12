@@ -1,11 +1,15 @@
-﻿namespace FreshVegCart.Api.Services;
+﻿using FreshVegCart.Api.Data.Entities;
+using Microsoft.AspNetCore.Identity;
+
+namespace FreshVegCart.Api.Services;
 
 public static class Registration
 {
     public static IServiceCollection RegisterServices(this IServiceCollection services) =>
         services
-            .AddScoped<AuthService>()
-            .AddScoped<ProductService>()
-            .AddScoped<OrderService>()
-            .AddScoped<UserService>();
+            .AddTransient<AuthService>()
+            .AddTransient<ProductService>()
+            .AddTransient<OrderService>()
+            .AddTransient<UserService>()
+            .AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
 }

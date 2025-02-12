@@ -1,11 +1,12 @@
 ﻿using FreshVegCart.Api.Data;
 using FreshVegCart.Api.Data.Entities;
 using FreshVegCart.Shared.Library.Dtos;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace FreshVegCart.Api.Services;
 
-public class UserService(DataContext dataContext) : ServiceBase(dataContext)
+public class UserService(DataContext dataContext, IPasswordHasher<User> passwordHasher) : ServiceBase(dataContext)
 {
     public async Task<ApiResult> SaveAddress(AddressDto dto, int userId)
     {
@@ -25,12 +26,9 @@ public class UserService(DataContext dataContext) : ServiceBase(dataContext)
 
             if (dto.Id == 0)
             {
-                await DataContext.UserAddresses.AddAsync(new UserAddress
+                await DataContext.UserAddresses.AddAsync(new()
                 {
-                    UserId = userId,
-                    Address = dto.Address,
-                    Name = dto.Name,
-                    IsDefault = dto.IsDefault
+                    UserId = userId, Address = dto.Address, Name = dto.Name, IsDefault = dto.IsDefault
                 });
             }
             else
@@ -64,12 +62,35 @@ public class UserService(DataContext dataContext) : ServiceBase(dataContext)
         await DataContext.UserAddresses
             .AsNoTracking()
             .Where(a => a.UserId == userId)
-            .Select(a => new AddressDto
-            {
-                Id = a.Id,
-                Address = a.Address,
-                Name = a.Name,
-                IsDefault = a.IsDefault
-            })
+            .Select(a => new AddressDto { Id = a.Id, Address = a.Address, Name = a.Name, IsDefault = a.IsDefault })
             .ToArrayAsync();
+
+    public async Task<ApiResult> ChangePassword(ChangePasswordDto dto, int userId)
+    {
+        try
+        {
+            var user = await DataContext.Users.FindAsync(userId);
+            if (user is null)
+            {
+                return ApiResult.Fail("User not found.");
+            }
+
+            var verificationResult = passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.CurrentPassword);
+            if (verificationResult == PasswordVerificationResult.Failed)
+            {
+                return ApiResult.Fail("Invalid current password.");
+            }
+
+            user.PasswordHash = passwordHasher.HashPassword(user, dto.NewPassword);
+            await DataContext.SaveChangesAsync();
+
+            return ApiResult.Success("Password changed successfully.");
+        }
+        catch (Exception ex)
+        {
+            // Log the Exception
+            // Send some user friendly error message to the client
+            return ApiResult.Fail(ex.Message);
+        }
+    }
 }

@@ -7,32 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var config = builder.Configuration;
 
+var connectionString = config.GetConnectionString("Default") ?? string.Empty;
+
 services
     .AddOpenApi()
-    .AddDbContext<DataContext>(options =>
-        options.UseSqlServer(config.GetConnectionString("Default"))
-            .UseSeeding((context, _) =>
-            {
-                if (context.Set<Product>().Any())
-                {
-                    return;
-                }
-
-                context.Set<Product>().AddRange(Product.GetSeedData());
-                context.SaveChanges();
-            })
-            .UseAsyncSeeding(async (context, _, ct) =>
-            {
-                if (await context.Set<Product>().AnyAsync(cancellationToken: ct))
-                {
-                    return;
-                }
-
-                context.Set<Product>().AddRange(Product.GetSeedData());
-                await context.SaveChangesAsync(cancellationToken: ct);
-            }));
-
-services.RegisterServices();
+    .RegisterDbContext(connectionString)
+    .RegisterServices();
 
 var app = builder.Build();
 
