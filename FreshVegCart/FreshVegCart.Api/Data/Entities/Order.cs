@@ -1,8 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using FreshVegCart.Shared.Library;
-
-namespace FreshVegCart.Api.Data.Entities;
+﻿namespace FreshVegCart.Api.Data.Entities;
 
 public class Order
 {

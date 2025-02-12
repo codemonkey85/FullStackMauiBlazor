@@ -1,8 +1,6 @@
-﻿using FreshVegCart.Api.Services;
+﻿namespace FreshVegCart.Api.Endpoints;
 
-namespace FreshVegCart.Api.Endpoints;
-
-public static class Product
+public static class ProductEndpoints
 {
     public static IEndpointRouteBuilder MapProductEndpoints(this IEndpointRouteBuilder apiGroup)
     {

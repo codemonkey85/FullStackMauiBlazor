@@ -1,12 +1,6 @@
-﻿using System.Security.Claims;
-using FreshVegCart.Api.Services;
-using FreshVegCart.Shared.Library.Dtos;
-using FreshVegCart.Shared.Library.Extensions;
-using Microsoft.AspNetCore.Authorization;
+﻿namespace FreshVegCart.Api.Endpoints;
 
-namespace FreshVegCart.Api.Endpoints;
-
-public static class User
+public static class UserEndpoints
 {
     public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder apiGroup)
     {

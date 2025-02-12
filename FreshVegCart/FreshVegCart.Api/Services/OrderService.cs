@@ -1,9 +1,4 @@
-﻿using FreshVegCart.Api.Data;
-using FreshVegCart.Api.Data.Entities;
-using FreshVegCart.Shared.Library.Dtos;
-using Microsoft.EntityFrameworkCore;
-
-namespace FreshVegCart.Api.Services;
+﻿namespace FreshVegCart.Api.Services;
 
 public class OrderService(DataContext dataContext) : ServiceBase(dataContext)
 {

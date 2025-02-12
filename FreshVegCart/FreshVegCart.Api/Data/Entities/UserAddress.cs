@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace FreshVegCart.Api.Data.Entities;
+﻿namespace FreshVegCart.Api.Data.Entities;
 
 public class UserAddress
 {

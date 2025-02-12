@@ -1,6 +1,4 @@
-﻿using FreshVegCart.Api.Data;
-
-namespace FreshVegCart.Api.Services;
+﻿namespace FreshVegCart.Api.Services;
 
 public class ServiceBase(DataContext dataContext)
 {

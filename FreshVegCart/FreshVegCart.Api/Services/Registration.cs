@@ -1,7 +1,4 @@
-﻿using FreshVegCart.Api.Data.Entities;
-using Microsoft.AspNetCore.Identity;
-
-namespace FreshVegCart.Api.Services;
+﻿namespace FreshVegCart.Api.Services;
 
 public static class Registration
 {

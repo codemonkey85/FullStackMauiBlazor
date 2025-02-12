@@ -1,8 +1,4 @@
-﻿using FreshVegCart.Api.Data;
-using FreshVegCart.Shared.Library.Dtos;
-using Microsoft.EntityFrameworkCore;
-
-namespace FreshVegCart.Api.Services;
+﻿namespace FreshVegCart.Api.Services;
 
 public class ProductService(DataContext dataContext) : ServiceBase(dataContext)
 {

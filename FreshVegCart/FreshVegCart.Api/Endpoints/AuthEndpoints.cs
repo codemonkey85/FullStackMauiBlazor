@@ -1,9 +1,6 @@
-﻿using FreshVegCart.Api.Services;
-using FreshVegCart.Shared.Library.Dtos;
+﻿namespace FreshVegCart.Api.Endpoints;
 
-namespace FreshVegCart.Api.Endpoints;
-
-public static class Auth
+public static class AuthEndpoints
 {
     public static IEndpointRouteBuilder MapAuthEndpoints(this IEndpointRouteBuilder apiGroup)
     {

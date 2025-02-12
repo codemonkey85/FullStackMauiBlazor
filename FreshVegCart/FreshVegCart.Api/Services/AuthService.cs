@@ -1,12 +1,6 @@
-﻿using FreshVegCart.Api.Data;
-using FreshVegCart.Api.Data.Entities;
-using FreshVegCart.Shared.Library.Dtos;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿namespace FreshVegCart.Api.Services;
 
-namespace FreshVegCart.Api.Services;
-
-public class AuthService(DataContext dataContext, IPasswordHasher<User> passwordHasher)
+public class AuthService(DataContext dataContext, IPasswordHasher<User> passwordHasher, IConfiguration configuration)
     : ServiceBase(dataContext)
 {
     public async Task<ApiResult> Register(RegisterDto dto)
@@ -52,8 +46,7 @@ public class AuthService(DataContext dataContext, IPasswordHasher<User> password
             return ApiResult<LoggedInUser>.Fail("Invalid email or password.");
         }
 
-        // Generate JWT token here
-        var jwt = "";
+        var jwt = GenerateToken(user);
 
         var loggedInUser = new LoggedInUser(user.Id, user.Name, user.Email, jwt);
 
@@ -61,5 +54,32 @@ public class AuthService(DataContext dataContext, IPasswordHasher<User> password
             loggedInUser,
             "Login successful."
         );
+    }
+
+    private string GenerateToken(User user)
+    {
+        Claim[] claims =
+        [
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new(ClaimTypes.Name, user.Name),
+            new(ClaimTypes.Email, user.Email),
+        ];
+
+        var secretKey = configuration.GetValue<string>("Jwt:SecretKey") ?? string.Empty;
+
+        var securityKey = Encoding.UTF8.GetBytes(secretKey);
+        var symmetricKey = new SymmetricSecurityKey(securityKey);
+        var signingCreds = new SigningCredentials(symmetricKey, SecurityAlgorithms.HmacSha256);
+
+        var issuer = configuration.GetValue<string>("Jwt:Issuer");
+        var expirationInMinutes = configuration.GetValue<int>("Jwt:ExpirationInMinutes");
+
+        var jwtSecurityToken = new JwtSecurityToken(
+            issuer: issuer,
+            claims: claims,
+            expires: DateTime.UtcNow.AddMinutes(expirationInMinutes),
+            signingCredentials: signingCreds);
+
+        return new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
     }
 }

@@ -1,7 +1,4 @@
-﻿using FreshVegCart.Api.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-
-namespace FreshVegCart.Api.Data;
+﻿namespace FreshVegCart.Api.Data;
 
 public class DataContext(DbContextOptions<DataContext> options) : DbContext(options)
 {

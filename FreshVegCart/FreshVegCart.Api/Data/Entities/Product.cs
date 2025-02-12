@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace FreshVegCart.Api.Data.Entities;
+﻿namespace FreshVegCart.Api.Data.Entities;
 
 public class Product
 {
