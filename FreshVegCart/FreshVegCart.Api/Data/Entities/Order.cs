@@ -15,11 +15,12 @@ public class Order
 
     public DateTime Date { get; set; }
 
+    public virtual ICollection<OrderItem> Items { get; set; } = [];
+
+    public int ItemCount { get; set; }
+
     [Column(TypeName = DatabaseConstants.DecimalType)]
     public decimal TotalAmount { get; set; }
-
-    [StringLength(200)]
-    public string? Remarks { get; set; }
 
     public OrderStatus Status { get; set; } = OrderStatus.Placed;
 
@@ -31,8 +32,6 @@ public class Order
     [Required, StringLength(20)]
     public string AddressName { get; set; } = string.Empty;
 
-    public virtual ICollection<OrderItem> Items { get; set; } = [];
-
-    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-    public int ItemCount { get; private set; }
+    [StringLength(200)]
+    public string? Remarks { get; set; }
 }

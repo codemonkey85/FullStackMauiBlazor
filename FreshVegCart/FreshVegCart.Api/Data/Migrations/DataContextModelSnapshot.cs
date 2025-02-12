@@ -44,9 +44,7 @@ namespace FreshVegCart.Api.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ItemCount")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("int")
-                        .HasComputedColumnSql("(SELECT COUNT(*)\r\nFROM OrderItems\r\nWHERE OrderItems.OrderId = Orders.Id)", true);
+                        .HasColumnType("int");
 
                     b.Property<string>("Remarks")
                         .HasMaxLength(200)
@@ -79,16 +77,16 @@ namespace FreshVegCart.Api.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProductImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()

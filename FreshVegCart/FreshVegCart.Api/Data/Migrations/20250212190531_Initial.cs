@@ -51,13 +51,13 @@ namespace FreshVegCart.Api.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ItemCount = table.Column<int>(type: "int", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Remarks = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     UserAddressId = table.Column<int>(type: "int", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     AddressName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    ItemCount = table.Column<int>(type: "int", nullable: false, computedColumnSql: "(SELECT COUNT(*)\r\nFROM OrderItems\r\nWHERE OrderItems.OrderId = Orders.Id)", stored: true)
+                    Remarks = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,7 +101,7 @@ namespace FreshVegCart.Api.Data.Migrations
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ProductImageUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     ProductPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Unit = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false)
