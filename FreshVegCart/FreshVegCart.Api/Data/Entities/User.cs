@@ -16,6 +16,8 @@ public class User
     [MaxLength(20)]
     public string? Phone { get; set; }
 
-    [Required]
+    [Required, MaxLength(500)]
     public string PasswordHash { get; set; } = string.Empty;
+
+    public virtual ICollection<UserAddress> Addresses { get; set; } = [];
 }
