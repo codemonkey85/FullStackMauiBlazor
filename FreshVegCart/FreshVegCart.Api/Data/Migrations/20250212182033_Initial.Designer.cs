@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FreshVegCart.Api.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250212174036_Initial")]
+    [Migration("20250212182033_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -55,9 +55,6 @@ namespace FreshVegCart.Api.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsertId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
