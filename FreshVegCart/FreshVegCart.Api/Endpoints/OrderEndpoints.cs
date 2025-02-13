@@ -1,4 +1,7 @@
-﻿namespace FreshVegCart.Api.Endpoints;
+﻿using FreshVegCart.Shared.Dtos;
+using FreshVegCart.Shared.Extensions;
+
+namespace FreshVegCart.Api.Endpoints;
 
 public static class OrderEndpoints
 {

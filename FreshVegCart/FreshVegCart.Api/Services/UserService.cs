@@ -1,4 +1,6 @@
-﻿namespace FreshVegCart.Api.Services;
+﻿using FreshVegCart.Shared.Dtos;
+
+namespace FreshVegCart.Api.Services;
 
 public class UserService(DataContext dataContext, IPasswordHasher<User> passwordHasher) : ServiceBase(dataContext)
 {

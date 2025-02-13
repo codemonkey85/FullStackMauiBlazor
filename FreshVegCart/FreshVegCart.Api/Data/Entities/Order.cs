@@ -1,4 +1,6 @@
-﻿namespace FreshVegCart.Api.Data.Entities;
+﻿using FreshVegCart.Shared;
+
+namespace FreshVegCart.Api.Data.Entities;
 
 public class Order
 {

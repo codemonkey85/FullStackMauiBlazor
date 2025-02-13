@@ -1,18 +1,5 @@
 [
   {
-    "Name": "ApiAndWeb",
-    "Projects": [
-      {
-        "Path": "FreshVegCart\\FreshVegCart.Web\\FreshVegCart.Web.csproj",
-        "Action": "Start"
-      },
-      {
-        "Path": "FreshVegCart\\FreshVegCart.Api\\FreshVegCart.Api.csproj",
-        "Action": "Start"
-      }
-    ]
-  },
-  {
     "Name": "ApiAndMaui",
     "Projects": [
       {
@@ -20,7 +7,7 @@
         "Action": "Start"
       },
       {
-        "Path": "FreshVegCart\\FreshVegCart\\FreshVegCart.csproj",
+        "Path": "FreshVegCart\\FreshVegCart.Mobile\\FreshVegCart.Mobile.csproj",
         "Action": "Start"
       }
     ]

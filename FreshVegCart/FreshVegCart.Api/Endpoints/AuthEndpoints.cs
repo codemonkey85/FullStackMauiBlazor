@@ -1,4 +1,6 @@
-﻿namespace FreshVegCart.Api.Endpoints;
+﻿using FreshVegCart.Shared.Dtos;
+
+namespace FreshVegCart.Api.Endpoints;
 
 public static class AuthEndpoints
 {

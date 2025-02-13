@@ -20,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\FreshVegCart.Shared.Library\FreshVegCart.Shared.Library.csproj" />
+	  <ProjectReference Include="..\FreshVegCart.Shared\FreshVegCart.Shared.csproj" />
 	</ItemGroup>
 
 </Project>
