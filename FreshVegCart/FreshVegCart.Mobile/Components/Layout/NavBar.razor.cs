@@ -1,0 +1,5 @@
+namespace FreshVegCart.Mobile.Components.Layout;
+
+public partial class NavBar
+{
+}

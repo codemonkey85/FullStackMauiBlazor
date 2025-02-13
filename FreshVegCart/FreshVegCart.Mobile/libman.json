@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "cdnjs",
+      "library": "boxicons@2.1.4",
+      "destination": "wwwroot/lib/boxicons/",
+      "files": [
+        "css/animations.min.css",
+        "css/boxicons.min.css",
+        "css/transformations.min.css",
+        "dist/boxicons.min.js",
+        "fonts/boxicons.eot",
+        "fonts/boxicons.svg",
+        "fonts/boxicons.ttf",
+        "fonts/boxicons.woff",
+        "fonts/boxicons.woff2",
+        "svg/regular/bx-user.svg",
+        "svg/solid/bxs-user.svg"
+      ]
+    },
+    {
+      "library": "bootstrap@5.3.3",
+      "destination": "wwwroot/lib/bootstrap/",
+      "files": [
+        "js/bootstrap.min.js",
+        "css/bootstrap.min.css"
+      ]
+    }
+  ]
+}

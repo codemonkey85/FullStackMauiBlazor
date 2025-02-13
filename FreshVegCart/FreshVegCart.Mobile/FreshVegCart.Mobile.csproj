@@ -23,10 +23,10 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>FreshVegCart.Mobile</ApplicationTitle>
+		<ApplicationTitle>FreshVegCart</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.freshvegcart.mobile</ApplicationId>
+		<ApplicationId>com.bondcodes.freshvegcart</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
