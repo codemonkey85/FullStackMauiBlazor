@@ -3,6 +3,7 @@ using Refit;
 
 namespace FreshVegCart.Apis;
 
+[Headers("Authorization: Bearer ")]
 public interface IOrderApi
 {
     [Post("/api/order/place-order")]
