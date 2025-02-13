@@ -17,7 +17,15 @@
         "fonts/boxicons.woff",
         "fonts/boxicons.woff2",
         "svg/regular/bx-user.svg",
-        "svg/solid/bxs-user.svg"
+        "svg/regular/bx-home.svg",
+        "svg/regular/bx-cart.svg",
+        "svg/regular/bx-objects-horizontal-left.svg",
+        "svg/regular/bx-help-circle.svg",
+        "svg/solid/bxs-user.svg",
+        "svg/solid/bxs-home.svg",
+        "svg/solid/bxs-cart.svg",
+        "svg/solid/bxs-objects-horizontal-left.svg",
+        "svg/solid/bxs-help-circle.svg"
       ]
     },
     {
